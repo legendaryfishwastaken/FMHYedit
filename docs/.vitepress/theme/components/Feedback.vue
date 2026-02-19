@@ -145,36 +145,28 @@ const toggleCard = () => (isCardShown.value = !isCardShown.value)
   </template>
   <template v-else>
     <div
-      class="mt-2 p-4 border-2 border-solid bg-brand-50 border-brand-300 dark:bg-brand-950 dark:border-brand-800 rounded-xl col-span-3 transition-colors duration-250"
+      class="mt-2 p-4 border-2 border-solid bg-$vp-c-bg-alt border-$vp-c-divider rounded-xl col-span-3 transition-colors duration-250"
     >
       <div class="flex items-start md:items-center gap-3">
         <div class="pt-1 md:pt-0">
-          <div
-            class="w-10 h-10 rounded-full flex items-center justify-center bg-brand-500 dark:bg-brand-400"
-          >
+          <div class="w-10 h-10 rounded-full flex items-center justify-center bg-$vp-c-brand-3">
             <span
               :class="
                 isCardShown === false
-                  ? `i-lucide:mail w-6 h-6 text-white dark:text-brand-950`
-                  : `i-lucide:mail-x w-6 h-6 text-white dark:text-brand-950`
+                  ? `i-lucide:mail w-6 h-6 text-white`
+                  : `i-lucide:mail-x w-6 h-6 text-white`
               "
             />
           </div>
         </div>
-        <div
-          class="flex-grow flex items-start md:items-center gap-3 flex-col md:flex-row"
-        >
+        <div class="flex-grow flex items-start md:items-center gap-3 flex-col md:flex-row">
           <div class="flex-grow">
-            <div class="font-semibold text-brand-950 dark:text-brand-50">
-              Got feedback?
-            </div>
-            <div class="text-sm text-brand-800 dark:text-brand-100">
-              We'd love to know what you think about this page.
-            </div>
+            <div class="font-semibold text-$vp-c-text-1">Got feedback?</div>
+            <div class="text-sm text-$vp-c-text-2">We'd love to know what you think about this page.</div>
           </div>
           <div>
             <button
-              class="inline-block text-center rounded-full px-4 py-2.5 text-sm font-medium border-2 border-solid text-brand-700 border-brand-300 dark:text-brand-100 dark:border-brand-800"
+              class="bg-[#25262B] inline-block text-center rounded-full px-4 py-2.5 text-sm font-medium border-2 border-solid text-white border-$vp-c-divider"
               @click="toggleCard()"
             >
               Share Feedback
@@ -199,7 +191,7 @@ const toggleCard = () => (isCardShown.value = !isCardShown.value)
             <button
               v-for="item in feedbackOptions"
               :key="item.value"
-              class="bg-bg border-$vp-c-default-soft hover:border-primary mt-2 select-none rounded border-2 border-solid font-bold transition-all duration-250 rounded-lg text-[14px] font-500 leading-normal m-0 px-3 py-1.5 text-center align-middle whitespace-nowrap"
+                class="bg-[#25262B] border-$vp-c-default-soft hover:border-primary mt-2 select-none rounded border-2 border-solid font-bold transition-all duration-250 rounded-lg text-[14px] text-white font-500 leading-normal m-0 px-3 py-1.5 text-center align-middle whitespace-nowrap"
               @click="handleSubmit(item.value)"
             >
               <span>{{ item.label }}</span>
@@ -213,51 +205,7 @@ const toggleCard = () => (isCardShown.value = !isCardShown.value)
           </div>
           <p class="heading" v-text="message"></p>
           <div v-if="feedback.type === 'suggestion'" class="mb-2 text-sm">
-            <details>
-              <summary>
-                <span class="ii-lucide-shield-x bg-cerise-400 mb-1 ml-1" />
-                Do not submit any of the following:
-              </summary>
-              <strong>🕹️ Emulators</strong>
-              <p class="desc">
-                They're already on the
-                <a
-                  class="text-primary text-underline font-bold"
-                  href="https://emulation.gametechwiki.com/index.php/Main_Page"
-                >
-                  Game Tech Wiki.
-                </a>
-              </p>
-              <strong>🔻 Leeches</strong>
-              <p class="desc">
-                They're already on the
-                <a
-                  class="text-primary text-underline font-bold"
-                  href="https://filehostlist.miraheze.org/wiki/Free_Premium_Leeches"
-                >
-                  File Hosting Wiki.
-                </a>
-              </p>
-              <strong>🐧 Distros</strong>
-              <p class="desc">
-                They're already on
-                <a
-                  class="text-primary text-underline font-bold"
-                  href="https://distrowatch.com/"
-                >
-                  DistroWatch.
-                </a>
-              </p>
-              <strong>🎲 Mining / Betting Sites</strong>
-              <p class="desc">
-                Don't post anything related to betting, mining, BINs, CCs, etc.
-              </p>
-              <strong>🎮 Multiplayer Game Hacks</strong>
-              <p class="desc">
-                Don't post any hacks/exploits that give unfair advantages in
-                multiplayer games.
-              </p>
-            </details>
+            <p>Please read the <a href="/other/contributing">Contribute Guide</a> before submitting your feedback!</p>
           </div>
           <textarea
             v-model="feedback.message"
@@ -266,10 +214,11 @@ const toggleCard = () => (isCardShown.value = !isCardShown.value)
             placeholder="What a lovely wiki!"
           />
           <p class="desc mb-2">
-            Add your Discord handle if you would like a response, or if we need more information from you, otherwise join our
+            Add your Discord handle if you would like a response, or if we need
+            more information from you, otherwise join our
             <a
               class="text-primary text-underline font-semibold"
-              href="https://rentry.co/FMHY-Invite/"
+              href="https://github.com/fmhy/FMHY/wiki/FMHY-Discord"
             >
               Discord.
             </a>
@@ -283,9 +232,10 @@ const toggleCard = () => (isCardShown.value = !isCardShown.value)
             </button>
             <button
               type="submit"
-              class="border border-div rounded-lg transition-colors duration-250 inline-block text-14px font-500 leading-1.5 px-3 py-3 text-center align-middle whitespace-nowrap disabled:opacity-50 text-text-2 bg-brand-100 dark:bg-brand-700 border-brand-800 dark:border-brand-700 disabled:bg-brand-100 dark:disabled:bg-brand-900 hover:border-brand-900 dark:hover:border-brand-800 hover:bg-brand-200 dark:hover:bg-brand-800"
+              class="btn btn-primary"
               :disabled="isDisabled"
               @click="handleSubmit()"
+              :style="isDisabled ? {} : { 'background-color': 'var(--vp-button-brand-bg)', 'border-color': 'var(--vp-button-brand-border)', color: 'var(--vp-button-brand-text)' }"
             >
               Send Feedback 📩
             </button>
@@ -327,14 +277,14 @@ const toggleCard = () => (isCardShown.value = !isCardShown.value)
 }
 
 .btn-primary {
-  color: #fff;
-  background-color: var(--vp-c-brand);
-  border-color: var(--vp-c-brand);
+  color: var(--vp-button-brand-text);
+  background-color: var(--vp-button-brand-bg);
+  border-color: var(--vp-button-brand-border);
 }
 
 .btn-primary:hover {
-  background-color: var(--vp-c-brand-darker);
-  border-color: var(--vp-c-brand-darker);
+  background-color: var(--vp-button-brand-hover-bg);
+  border-color: var(--vp-button-brand-hover-border);
 }
 
 .heading {
